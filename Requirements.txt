@@ -1,0 +1,10 @@
+Since it's part of the python program then it should cover
+
+functions
+dates
+collections
+lists
+dicts
+tupes
+strings
+Optional : feel free to use Graphical user interface like tkinter, add some action to your terminal using string color etc... (SKY IS THE LIMIT)
