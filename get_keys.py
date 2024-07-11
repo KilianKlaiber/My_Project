@@ -1,11 +1,14 @@
+# Library  for importing login information for using
+# with the twitter/X app /API.
+
 from dotenv import load_dotenv
 import os
 
 
 def get_app_name() -> str | None:
     load_dotenv()
-    twitter_name = os.getenv('TWITTER_NAME')
-    return twitter_name
+    app_name = os.getenv('TWITTER_NAME')
+    return app_name
 
 def get_app_id() -> str | None:
     load_dotenv()
