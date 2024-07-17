@@ -9,7 +9,7 @@ from random import shuffle
 import time
 
 
-new_list = list(range(10000))
+new_list = list(range(100000))
 shuffle(new_list)
 
 def quicksort(arr):
@@ -30,7 +30,7 @@ print("Quicksort", delta_time)
 
 def main():
 
-    new_list = list(range(10000))
+    new_list = list(range(100000))
     shuffle(new_list)
     
     #print("shuffled list: ", new_list)
