@@ -5,7 +5,11 @@
 
 # Defining a list of random integers:
 
-int_list = [400, 1000, 2000, 50, -3, 10, 45, 123, 9]
+from random import shuffle
+
+random_list = list(range(500))
+
+randome_list = shuffle(random_list)
 
 
 def errorless_pop(liste: list):
@@ -45,17 +49,30 @@ def list_to_list_of_ordered_sublists(int_list: list[int]):
             list_of_sublists.append([pop_number])
         else:
             for item in list_of_sublists:
+                # append pop to end of item_list, if  pop >  last element of item
                 if pop_number > item[-1]:
                     item.append(pop_number)
                     break
+                # insert pop item to beginnin of list, if pop < first element of item
                 elif pop_number < item[0]:
                     item.insert(0, pop_number)
                     break
+            # If item was not added to any sublist, append a new sub-list, which
+            # comprises as single element, namely the pop-numer
             else:
                 list_of_sublists.append([pop_number])
+        # Pop numbers until the list is empty
         pop_number = errorless_pop(int_list)
 
     return list_of_sublists
 
+
+new_list = list_to_list_of_ordered_sublists(random_list)
+
+length_new_list = len(new_list)
+
+print("length of new list: ", length_new_list)
+
+print("new list: ", new_list)
 
 
