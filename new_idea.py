@@ -1,31 +1,41 @@
 # Sorting algorthim that takes a lists and automatically returns a number of sublists or stacks, each of which are sorted.
-# Creating a single sorted list by  subsequently applying the merge-function on the sublists used in the merge-sort algoritm.
+# Creating a single sorted list by subsequently applying the merge-function on the sublists used in the merge-sort algoritm.
 # Hoping that the number of merge operations is reduced.
 
 
 # Defining a list of random integers:
 
 from random import shuffle
-
+import time
 
 def main():
 
-    new_list = list(range(500))
-
+    new_list = list(range(1000))
     shuffle(new_list)
     
-    print(new_list)
-
-
+    #print("shuffled list: ", new_list)
+    # print("*"*100)
+    
+    # Create a list of ordered sublists:
+    
+    start_time = time.time()
     new_lists = lists_of_ordered_sublists(new_list)
+    
+    #print("number of_new_lists: ", len(new_lists))
+    # print("*"*100)
 
+    # Merge the ordered sublists in order to create  anordered list using merge()
     while len(new_lists) >= 2:
         right = new_lists.pop()
         left = new_lists.pop()
         interim_list = merge(left, right)
         new_lists.append(interim_list)
+    
+    end_time = time.time()
+    
+    delta_time = end_time - start_time
 
-    print(new_lists)
+    print(delta_time)
 
 
 def errorless_pop(liste: list):
