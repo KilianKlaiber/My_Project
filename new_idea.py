@@ -5,7 +5,7 @@
 
 # Defining a list of random integers:
 
-int_list = [400, 1000, 2000, 900, 532]
+int_list = [400, 1000, 2000, 50, -3, 10, 45, 123, 9]
 
 
 def errorless_pop(liste: list):
@@ -26,30 +26,36 @@ def errorless_pop(liste: list):
         return None
     
 
+def list_to_list_of_ordered_sublists(int_list: list[int]):
+    """Create listtof ordered sublists
 
-list_of_sublists = []
+    Args:
+        int_list (list[int]): _description_
 
-pop_number = errorless_pop(int_list)
+    Returns:
+        list[list]: _description_
+    """
 
-
-while pop_number != None:
-    if len(list_of_sublists) == 0:
-        list_of_sublists.append([pop_number])
-    else:
-        for item in list_of_sublists:
-            if pop_number > item[-1]:
-                item.append(pop_number)
-                break
-            elif pop_number < item[0]:
-                print("item before: ", item)
-                item.insert(0, pop_number)
-                break
-        else:
-            list_of_sublists.append([pop_number])
+    list_of_sublists = []
     pop_number = errorless_pop(int_list)
 
-print(list_of_sublists)
+
+    while pop_number != None:
+        if len(list_of_sublists) == 0:
+            list_of_sublists.append([pop_number])
+        else:
+            for item in list_of_sublists:
+                if pop_number > item[-1]:
+                    item.append(pop_number)
+                    break
+                elif pop_number < item[0]:
+                    item.insert(0, pop_number)
+                    break
+            else:
+                list_of_sublists.append([pop_number])
+        pop_number = errorless_pop(int_list)
+
+    return list_of_sublists
 
 
-                
-   
+
