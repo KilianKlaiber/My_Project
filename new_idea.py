@@ -28,6 +28,15 @@ end_time = time.time()
 delta_time = end_time - start_time
 print("Quicksort", delta_time)
 
+new_list = list(range(100000))
+shuffle(new_list)
+
+start_time = time.time()
+sorted(new_list)
+end_time = time.time()
+delta_time = end_time - start_time
+print("sorted", delta_time)
+
 def main():
 
     new_list = list(range(100000))
@@ -151,8 +160,6 @@ def merge(left, right):
             break
 
     return result
-
-
 
 main()
 
