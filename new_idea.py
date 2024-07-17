@@ -7,7 +7,7 @@
 
 from random import shuffle
 
-random_list = list(range(500))
+random_list = list(range(1000))
 
 randome_list = shuffle(random_list)
 
