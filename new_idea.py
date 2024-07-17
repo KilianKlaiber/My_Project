@@ -7,9 +7,22 @@
 
 from random import shuffle
 
-random_list = list(range(1000))
 
-randome_list = shuffle(random_list)
+def main():
+    random_list = list(range(100))
+    randome_list = shuffle(random_list)
+    
+    list_of_sublists = lists_of_ordered_sublists(random_list)
+    
+    while len(list_of_sublists) >= 2:
+        right = list_of_sublists.pop()
+        left = list_of_sublists.pop()
+        
+        new_list = merge(left, right)
+        
+        list_of_sublists.append(new_list)
+    
+    print(list_of_sublists)
 
 
 def errorless_pop(liste: list):
@@ -30,7 +43,7 @@ def errorless_pop(liste: list):
         return None
     
 
-def list_to_list_of_ordered_sublists(int_list: list[int]):
+def lists_of_ordered_sublists(int_list: list[int]):
     """Create listtof ordered sublists
 
     Args:
@@ -67,12 +80,45 @@ def list_to_list_of_ordered_sublists(int_list: list[int]):
     return list_of_sublists
 
 
-new_list = list_to_list_of_ordered_sublists(random_list)
 
-length_new_list = len(new_list)
+def merge(left, right):
+    # If the first array is empty, then nothing needs
+    # to be merged, and you can return the second array as the result
+    if len(left) == 0:
+        return right
 
-print("length of new list: ", length_new_list)
+    # If the second array is empty, then nothing needs
+    # to be merged, and you can return the first array as the result
+    if len(right) == 0:
+        return left
 
-print("new list: ", new_list)
+    result = []
+    index_left = index_right = 0
 
+    # Now go through both arrays until all the elements
+    # make it into the resultant array
+    while len(result) < len(left) + len(right):
+        # The elements need to be sorted to add them to the
+        # resultant array, so you need to decide whether to get
+        # the next element from the first or the second array
+        if left[index_left] <= right[index_right]:
+            result.append(left[index_left])
+            index_left += 1
+        else:
+            result.append(right[index_right])
+            index_right += 1
 
+        # If you reach the end of either array, then you can
+        # add the remaining elements from the other array to
+        # the result and break the loop
+        if index_right == len(right):
+            result += left[index_left:]
+            break
+
+        if index_left == len(left):
+            result += right[index_right:]
+            break
+
+    return result
+
+main()
