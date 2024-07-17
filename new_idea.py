@@ -8,9 +8,29 @@
 from random import shuffle
 import time
 
+
+new_list = list(range(10000))
+shuffle(new_list)
+
+def quicksort(arr):
+    if len(arr) <= 1:
+        return arr
+    else:
+        pivot = arr[len(arr) // 2]
+        left = [x for x in arr if x < pivot]
+        middle = [x for x in arr if x == pivot]
+        right = [x for x in arr if x > pivot]
+        return quicksort(left) + middle + quicksort(right)
+
+start_time = time.time()
+quicksort(new_list)
+end_time = time.time()
+delta_time = end_time - start_time
+print("Quicksort", delta_time)
+
 def main():
 
-    new_list = list(range(1000))
+    new_list = list(range(10000))
     shuffle(new_list)
     
     #print("shuffled list: ", new_list)
@@ -32,10 +52,8 @@ def main():
         new_lists.append(interim_list)
     
     end_time = time.time()
-    
     delta_time = end_time - start_time
-
-    print(delta_time)
+    print("my_sort", delta_time)
 
 
 def errorless_pop(liste: list):
