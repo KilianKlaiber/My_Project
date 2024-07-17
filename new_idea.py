@@ -9,20 +9,23 @@ from random import shuffle
 
 
 def main():
-    random_list = list(range(100))
-    randome_list = shuffle(random_list)
+
+    new_list = list(range(500))
+
+    shuffle(new_list)
     
-    list_of_sublists = lists_of_ordered_sublists(random_list)
-    
-    while len(list_of_sublists) >= 2:
-        right = list_of_sublists.pop()
-        left = list_of_sublists.pop()
-        
-        new_list = merge(left, right)
-        
-        list_of_sublists.append(new_list)
-    
-    print(list_of_sublists)
+    print(new_list)
+
+
+    new_lists = lists_of_ordered_sublists(new_list)
+
+    while len(new_lists) >= 2:
+        right = new_lists.pop()
+        left = new_lists.pop()
+        interim_list = merge(left, right)
+        new_lists.append(interim_list)
+
+    print(new_lists)
 
 
 def errorless_pop(liste: list):
@@ -121,4 +124,7 @@ def merge(left, right):
 
     return result
 
+
+
 main()
+
