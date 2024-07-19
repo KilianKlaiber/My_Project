@@ -37,7 +37,3 @@ def merge(left, right):
     
     return sorted_arr
 
-# Example usage:
-unsorted_list = [34, 7, 23, 32, 5, 62]
-sorted_list = merge_sort(unsorted_list)
-print(sorted_list)  # Output: [5, 7, 23, 32, 34, 62]
