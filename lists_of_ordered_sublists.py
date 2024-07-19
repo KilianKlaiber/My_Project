@@ -20,13 +20,14 @@ def main():
    
 
 def lists_of_ordered_sublists(int_list: list[int]):
-    """Create listtof ordered sublists
+    """Create list of ordered sublists
 
     Args:
-        int_list (list[int]): _description_
+        int_list (list[int]): List of integers, which are not sorted.
 
     Returns:
-        list[list]: _description_
+        list[list]: List of sublist. Each sublist is sorted. The sublists taken together
+        contain all the items of the intput list of integers.
     """
 
     list_of_sublists = []
