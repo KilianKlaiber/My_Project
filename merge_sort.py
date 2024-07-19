@@ -1,3 +1,6 @@
+# Definition of the merge_sort algorithm as well as 
+# Definition of the merge function for merging sorted lists.
+
 def merge_sort(arr):
     if len(arr) <= 1:
         return arr
