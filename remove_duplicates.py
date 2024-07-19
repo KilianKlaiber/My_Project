@@ -6,11 +6,19 @@ The relative order of the elements should be kept the same. Then return the numb
 from multiprocessing import Process
 
 
-num_array = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 6, 7, 8, 8, 8, 8, 10, 12, 32, 45, 45]
+def main():
+        
+    num_array = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 6, 7, 8, 8, 8, 8, 10, 12, 32, 45, 45]
 
+    result = remove_Duplicates(num_array)
+    print("number_of_instances: ", number_of_instances)
+
+    print(result)
+
+    print("number of unique elements: ", len(result))
+
+# Global variable counting how often remove_Duplicates is called:
 number_of_instances = 0
-
-
 def remove_Duplicates(array: list):
     global number_of_instances
     number_of_instances += 1
@@ -55,9 +63,6 @@ def remove_Duplicates(array: list):
         number_of_instances -= 1
         return remove_Duplicates(left_array) + remove_Duplicates(right_array)
 
-result = remove_Duplicates(num_array)
-print("number_of_instances: ", number_of_instances)
 
-print(result)
-
-print("number of unique elements: ", len(result))
+if __name__ == "__main__":
+    main()
