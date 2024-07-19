@@ -1,5 +1,6 @@
 # Definition of the standard quicksort algorithm
 
+
 def quicksort(arr):
     if len(arr) <= 1:
         return arr

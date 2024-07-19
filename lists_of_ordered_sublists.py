@@ -5,19 +5,19 @@
 # Else, a new sublist is created with the item as single item of the
 # sublist.
 
+
 def main():
     from random import shuffle
-    
-    
+
     new_list = list(range(1000))
     shuffle(new_list)
-    
+
     lists = lists_of_ordered_sublists(new_list)
-    
+
     print("number of lists: ", len(lists))
-    print("*"*100)
+    print("*" * 100)
     print("list of sublists: ", lists)
-   
+
 
 def lists_of_ordered_sublists(int_list: list[int]):
     """Create list of ordered sublists
@@ -32,7 +32,6 @@ def lists_of_ordered_sublists(int_list: list[int]):
 
     list_of_sublists = []
     pop_number = errorless_pop(int_list)
-
 
     while pop_number != None:
         if len(list_of_sublists) == 0:
@@ -56,6 +55,7 @@ def lists_of_ordered_sublists(int_list: list[int]):
 
     return list_of_sublists
 
+
 def errorless_pop(liste: list):
     """Reurn None during pop, if list is empty
 
@@ -66,12 +66,13 @@ def errorless_pop(liste: list):
         Popped element, if the list is not empty
         None, if the list is empty
         Content oflist is reduced, because list
-        is a mutable data type passed to the function. 
+        is a mutable data type passed to the function.
     """
-    try: 
+    try:
         return liste.pop()
     except IndexError:
         return None
+
 
 if __name__ == "__main__":
     main()
