@@ -1,9 +1,5 @@
-# Twitter Trends Development over  time
+# Sorting Algorithms.
 
-Retrieve the top 3 twitter trends (from Germany) every day at 1 PM.
-Store the data in a dictionary. Store the dictionary in a JSON-file.
-Update the dictionary every day.
-
-Write a function to retrieve that data and display the data in a graph.
-
-![Excali-Drawing](image.png)
+Write an original sorting algorithm. Compare the sorting algorithm with
+merge-sort and the default algorithm sorted() in python. Display graphs
+of speed measurements as a result.
