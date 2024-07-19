@@ -57,7 +57,7 @@ def lists_of_ordered_sublists(int_list: list[int]):
 
 
 def errorless_pop(liste: list):
-    """Reurn None during pop, if list is empty
+    """Return None during pop, if list is empty
 
     Args:
         liste (list): random list
@@ -65,8 +65,8 @@ def errorless_pop(liste: list):
     Returns:
         Popped element, if the list is not empty
         None, if the list is empty
-        Content oflist is reduced, because list
-        is a mutable data type passed to the function.
+        Content of list is reduced without returning the list, 
+        because list is a mutable data type passed to the function.
     """
     try:
         return liste.pop()
