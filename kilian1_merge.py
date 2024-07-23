@@ -16,7 +16,7 @@ def main():
     print(ordered_list)
 
 
-def kilian_merge(new_list):
+def kilian1_merge(new_list):
 
     # Create a list of ordered sublists:
     new_lists = lists_of_ordered_sublists(new_list)
