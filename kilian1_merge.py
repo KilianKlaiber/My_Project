@@ -11,7 +11,7 @@ def main():
 
     # Call kilian_merge()
 
-    ordered_list = kilian_merge(shuffled_list)
+    ordered_list = kilian1_merge(shuffled_list)
 
     print(ordered_list)
 
