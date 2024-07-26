@@ -4,14 +4,7 @@ from typing import Any
 
 
 def main():
-    
-    
-    result = read_speed_comparison("Square.json")
-    
-    print(result[0])
-    print(result[1])
-    
-    ''' 
+        
     data_list = list(range(10, 25))
     answer = speed_compare_algorithms(
         data_list, "square1", "square2", "square", "square"
@@ -19,16 +12,8 @@ def main():
 
     display_speed_comparison(
         answer, algorithm_1="easy square", algorithm_2="complicated square"
-    ) """
-
-    """    save_speed_comparison(
-        answer,
-        "Square.json",
-        algorithm_1="easy square",
-        algorithm_2="complicated square",
     )
-    
-    '''    
+###############################################################################################
 
 
 def write_to_json(data: Any, json_file: str) -> None:
@@ -47,7 +32,7 @@ def write_to_json(data: Any, json_file: str) -> None:
     with open(json_file, "w") as file:
         contents = dumps(data, indent=2)
         file.write(contents)
-#############################################################################
+#########################################################################################
 
 
 def read_from_json(json_file: str) -> Any:
@@ -68,7 +53,7 @@ def read_from_json(json_file: str) -> Any:
         contents = file.read()
         data = loads(contents)
     return data
-#################################################################################
+#############################################################################################
 
 
 def parallel_process(func, data: list) -> list | None:
