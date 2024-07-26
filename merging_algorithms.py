@@ -1,6 +1,17 @@
 # Collection of Merging Algorithms:
 
 from multiprocessing import Pool
+from functions import parallel_process
+from random import shuffle
+
+
+def main():
+    numbers = list(range(100))
+    shuffle(numbers)
+    result = quick_parallel_sort(numbers)
+    
+    print(result)
+
 
 # Quicksort:
 def quicksort(arr):
@@ -12,8 +23,23 @@ def quicksort(arr):
         middle = [x for x in arr if x == pivot]
         right = [x for x in arr if x > pivot]
         return quicksort(left) + middle + quicksort(right)
+############################################################################
 
-    
+
+def quick_parallel_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    else:
+        pivot = arr[len(arr) // 2]
+        left = [x for x in arr if x < pivot]
+        middle = [x for x in arr if x == pivot]
+        right = [x for x in arr if x > pivot]
+        
+        result = parallel_process(quick_parallel_sort, [left, right])
+        return result[0] + middle + result[1]
+##########################################################################
+
+
 # Merge_Sort_Recursive:
 def merge_sort(arr):
     if len(arr) <= 1:
@@ -52,6 +78,27 @@ def merge(left, right):
 
     return sorted_arr
 ####################################################################################
+
+
+# Merge_parallel_Sort_Recursive:
+def merge_parallel_sort(arr):
+    if len(arr) <= 1:
+        return arr
+
+    # Divide the array into two halves
+    mid = len(arr) // 2
+    left_half = arr[:mid]
+    right_half = arr[mid:]
+
+    # Recursively sort both halves simultaneously
+    result = parallel_process(merge_parallel_sort, [left_half, right_half])
+    
+    left_sorted = result[0]
+    right_sorted = result[1]
+
+    # Merge the sorted halves
+    return merge(left_sorted, right_sorted)
+##############################################################################
 
 
 # Merge_Ordered_Sublists:
@@ -145,4 +192,9 @@ def merge_direct(new_list: list) -> list:
 
 def return_list(old_value: int) -> list:
     return [old_value]
+###################################################################################
 
+
+if __name__ == "__main__":
+    
+    main()
