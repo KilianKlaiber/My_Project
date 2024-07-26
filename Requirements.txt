@@ -5,7 +5,8 @@ dates
 collections
 lists
 dicts
-tupes
+tuples
 strings
-Optional : feel free to use Graphical user interface like tkinter, add some action to your terminal using string color etc... (SKY IS THE LIMIT)
+Optional : feel free to use Graphical user interface like tkinter, 
+add some action to your terminal using string color etc... (SKY IS THE LIMIT)
 
