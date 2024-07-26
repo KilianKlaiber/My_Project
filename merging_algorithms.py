@@ -36,7 +36,12 @@ def quick_parallel_sort(arr):
         right = [x for x in arr if x > pivot]
         
         result = parallel_process(quick_parallel_sort, [left, right])
-        return result[0] + middle + result[1]
+        if result == None:
+            print("Parallel Processing failed!")
+            return None
+        else:
+            return result[0] + middle + result[1]
+           
 ##########################################################################
 
 
@@ -93,11 +98,12 @@ def merge_parallel_sort(arr):
     # Recursively sort both halves simultaneously
     result = parallel_process(merge_parallel_sort, [left_half, right_half])
     
-    left_sorted = result[0]
-    right_sorted = result[1]
-
-    # Merge the sorted halves
-    return merge(left_sorted, right_sorted)
+    if result == None:
+        print("Parallel Processing failed!")
+        return None
+    else:
+        # Merge the sorted halves
+        return merge(result[0], result[1])
 ##############################################################################
 
 
