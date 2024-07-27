@@ -6,9 +6,9 @@ from random import shuffle
 
 
 def main():
-    numbers = list(range(100))
+    numbers = list(range(1000))
     shuffle(numbers)
-    result = quick_parallel_sort(numbers)
+    result = merge_direct(numbers)
     
     print(result)
 #############################################################################
@@ -37,11 +37,12 @@ def quick_parallel_sort(arr):
         right = [x for x in arr if x > pivot]
         
         result = parallel_process(quick_parallel_sort, [left, right])
-        if result == None:
+        if result != None:
+            return result[0] + middle + result[1]
+            
+        else:
             print("Parallel Processing failed!")
             return None
-        else:
-            return result[0] + middle + result[1]
            
 ##########################################################################
 
@@ -99,12 +100,13 @@ def merge_parallel_sort(arr):
     # Recursively sort both halves simultaneously
     result = parallel_process(merge_parallel_sort, [left_half, right_half])
     
-    if result == None:
-        print("Parallel Processing failed!")
-        return None
-    else:
+    if result != None:
         # Merge the sorted halves
         return merge(result[0], result[1])
+    else:
+        print("Parallel Processing failed!")
+        return None
+        
 ##############################################################################
 
 
