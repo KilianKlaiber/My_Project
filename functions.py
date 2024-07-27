@@ -132,11 +132,13 @@ def create_list_of_shuffled_lists(max: int, step: int) -> list[list[int]]:
     
     list_of_nums = []
     num = 0
-    while num <= max:
+    while num < max:
         num+=step
         list_of_nums.append(num)
+    
+    print("list of numbers: ", list_of_nums)
 
-    list_of_lists = [list(range(num)) for num in list_of_nums]
+    list_of_lists = [list(range(number)) for number in list_of_nums]
 
     for sublist in list_of_lists:
         shuffle(sublist)
