@@ -118,6 +118,33 @@ def measure_time(source: str, algorithm: str, data: Any) -> float:
 ##################################################################################################
 
 
+def create_list_of_shuffled_lists(max: int, step: int) -> list[list[int]]:
+    
+    """Create list of shuffled lists
+    args:
+        max: maximum number of elements of shuffled sublists
+        step: step size for increasing number of elements of sublists
+
+    Returns:
+        list: list of shuffled sublist
+    """
+    from random import shuffle
+    
+    list_of_nums = []
+    num = 0
+    while num <= max:
+        num+=step
+        list_of_nums.append(num)
+
+    list_of_lists = [list(range(num)) for num in list_of_nums]
+
+    for sublist in list_of_lists:
+        shuffle(sublist)
+        
+    return list_of_lists
+##################################################################################
+
+
 def speed_compare_algorithms(
     data: list, algorithm_1: str, algorithm_2: str, source_1: str, source_2: str
 ) -> list[tuple]:
