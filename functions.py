@@ -135,8 +135,6 @@ def create_list_of_shuffled_lists(max: int, step: int) -> list[list[int]]:
     while num < max:
         num+=step
         list_of_nums.append(num)
-    
-    print("list of numbers: ", list_of_nums)
 
     list_of_lists = [list(range(number)) for number in list_of_nums]
 
@@ -169,8 +167,12 @@ def speed_compare_algorithms(
     for datum in data:
         al1_time = measure_time(source_1, algorithm_1, datum)
         al2_time = measure_time(source_2, algorithm_2, datum)
-        result = (datum, al1_time, al2_time)
-        return_list.append(result)
+        if type(datum) == list:
+            result = (len(datum), al1_time, al2_time)
+            return_list.append(result)
+        else:
+            result = (datum, al1_time, al2_time)
+            return_list.append(result)
 
     return return_list
 ###############################################################################################
