@@ -26,8 +26,23 @@ def quicksort(arr):
         return quicksort(left) + middle + quicksort(right)
 ############################################################################
 
+# trying to define process_counter, which counts the number of times,
+# the function quick_parallel_sort has been called.
+# Defining that  parallel processing will only occur,
+# if the CPU_count - process_numer >= 2.
+def number_of_processes(func):
+    process_number =  0
+    def wrapper(process_number=process_number, *args, **kwargs):
+        process_number += 1
+        result = func(*args, **kwargs)
+        process_number += -1
+        return result
+    return wrapper
+           
 
+@number_of_processes
 def quick_parallel_sort(arr):
+    from os import cpu_count
     if len(arr) <= 1:
         return arr
     else:
@@ -43,7 +58,8 @@ def quick_parallel_sort(arr):
         else:
             print("Parallel Processing failed!")
             return None
-           
+
+
 ##########################################################################
 
 
