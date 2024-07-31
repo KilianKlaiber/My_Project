@@ -32,16 +32,17 @@ def quicksort(arr):
 # if the CPU_count - process_numer >= 2.
 def number_of_processes(func):
     process_number =  0
-    def wrapper(process_number=process_number, *args, **kwargs):
+    def wrapper( *args, **kwargs):
+        nonlocal process_number
         process_number += 1
-        result = func(*args, **kwargs)
+        result = func(process_number=process_number, *args, **kwargs)
         process_number += -1
         return result
     return wrapper
            
 
 @number_of_processes
-def quick_parallel_sort(arr):
+def quick_parallel_sort(arr, process_number):
     from os import cpu_count
     if len(arr) <= 1:
         return arr
@@ -51,7 +52,10 @@ def quick_parallel_sort(arr):
         middle = [x for x in arr if x == pivot]
         right = [x for x in arr if x > pivot]
         
-        result = parallel_process(quick_parallel_sort, [left, right])
+        num_cpus = cpu_count()
+        
+        if num_cpus - process_number  >= 2:
+            result = parallel_process(quick_parallel_sort, [left, right])
         if result != None:
             return result[0] + middle + result[1]
             
