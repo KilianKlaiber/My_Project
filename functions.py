@@ -70,14 +70,16 @@ def parallel_process(func, data: list) -> list | None:
     from concurrent.futures import ProcessPoolExecutor, as_completed
     from os import cpu_count
 
-    # Count the number of CPUs and take them as maximum number of workers for processing
+    """  # Count the number of CPUs and take them as maximum number of workers for processing
     num_cpus = cpu_count()
     if num_cpus != None and num_cpus >= 2:
         num_workers = min(len(data), num_cpus)
     else:
         print("No parallel processing possible due to lack of CPUs")
-        return None
+        return None """
 
+    num_workers = cpu_count()
+    
     # Perform Multitasking
     with ProcessPoolExecutor(num_workers) as executor:
         # Submit tasks to be executed with dictionary comprehension

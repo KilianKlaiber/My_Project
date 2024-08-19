@@ -4,12 +4,12 @@ from functions import *
 from sorting_algorithms import *
 import time
 
-data_list = create_list_of_shuffled_lists(100, 500)
-
-
+data_list = create_list_of_shuffled_lists(300, 50)
 
 speed_results = speed_compare_algorithms(
-    data_list, "quick_parallel_sort", "quicksort", "sorting_algorithms", "sorting_algorithms")
+    data_list, "quicksort", "merge_sort", "sorting_algorithms", "sorting_algorithms")
+
+print(speed_results)
 
 
-display_speed_comparison(speed_results, "quick_parallel_sort", "quicksort")
+display_speed_comparison(speed_results, "quicksort", "merge_sort")

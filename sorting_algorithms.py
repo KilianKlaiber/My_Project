@@ -1,4 +1,4 @@
-# Collection of Merging Algorithms:
+# Collection of Sorting Algorithms:
 
 from multiprocessing import Pool
 from functions import parallel_process
@@ -8,8 +8,8 @@ from random import shuffle
 def main():
     numbers = list(range(1000))
     shuffle(numbers)
-    result = merge_direct(numbers)
-    
+    result = quicksort(numbers)
+
     print(result)
 #############################################################################
 
@@ -26,24 +26,10 @@ def quicksort(arr):
         return quicksort(left) + middle + quicksort(right)
 ############################################################################
 
-# trying to define process_counter, which counts the number of times,
-# the function quick_parallel_sort has been called.
-# Defining that  parallel processing will only occur,
-# if the CPU_count - process_numer >= 2.
-def number_of_processes(func):
-    process_number =  0
-    def wrapper( *args, **kwargs):
-        nonlocal process_number
-        process_number += 1
-        result = func(process_number=process_number, *args, **kwargs)
-        process_number += -1
-        return result
-    return wrapper
-           
+# Quicksort_Algorithm, wherein the recursive processing of the left and right half of the pivot
+# is performed in parallel:
 
-@number_of_processes
-def quick_parallel_sort(arr, process_number):
-    from os import cpu_count
+def quick_parallel_sort(arr):
     if len(arr) <= 1:
         return arr
     else:
@@ -52,16 +38,9 @@ def quick_parallel_sort(arr, process_number):
         middle = [x for x in arr if x == pivot]
         right = [x for x in arr if x > pivot]
         
-        num_cpus = cpu_count()
+        result = parallel_process(quick_parallel_sort, [left, right])
         
-        if num_cpus - process_number  >= 2:
-            result = parallel_process(quick_parallel_sort, [left, right])
-        if result != None:
-            return result[0] + middle + result[1]
-            
-        else:
-            print("Parallel Processing failed!")
-            return None
+        return result[0] + middle + result[1]
 
 
 ##########################################################################
@@ -224,6 +203,22 @@ def return_list(old_value: int) -> list:
 ###################################################################################
 
 
+# trying to define process_counter, which counts the number of times,
+# This is not working at the moment.
+
+def number_of_processes(func):
+    process_number =  0
+    def wrapper( *args, **kwargs):
+        nonlocal process_number
+        process_number += 1
+        result = func(process_number=process_number, *args, **kwargs)
+        process_number += -1
+        return result
+    return wrapper
+           
+
+
 if __name__ == "__main__":
+    print(__name__)
     
     main()
