@@ -56,7 +56,7 @@ def read_from_json(json_file: str) -> Any:
 #############################################################################################
 
 
-def parallel_process(func, data: list) -> list | None:
+def parallel_process(func, data: list) -> list:
     """Use parallel processing, where a single functions processes a list of items
 
     Args:
