@@ -77,8 +77,6 @@ def parallel_process(func, data: list) -> list | None:
     else:
         print("No parallel processing possible due to lack of CPUs")
         return None
-
-    num_workers = cpu_count()
     
     # Perform Multitasking
     with ProcessPoolExecutor(num_workers) as executor:

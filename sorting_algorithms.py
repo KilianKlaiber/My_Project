@@ -11,11 +11,22 @@ def main():
     result = quicksort(numbers)
 
     print(result)
+
+
 #############################################################################
 
 
 # Quicksort:
-def quicksort(arr):
+def quicksort(arr: list) -> list:
+    """Sort an unsorted list
+    by pivoting the list item recusively around a pivot.
+
+    Args:
+        arr (list): list of unsorted items.
+
+    Returns:
+        list: list of sorted items
+    """
     if len(arr) <= 1:
         return arr
     else:
@@ -23,13 +34,27 @@ def quicksort(arr):
         left = [x for x in arr if x < pivot]
         middle = [x for x in arr if x == pivot]
         right = [x for x in arr if x > pivot]
+
         return quicksort(left) + middle + quicksort(right)
+
+
 ############################################################################
 
 # Quicksort_Algorithm, wherein the recursive processing of the left and right half of the pivot
 # is performed in parallel:
 
-def quick_parallel_sort(arr):
+
+def quick_parallel_sort(arr: list) -> list | None:
+    """sort unsorted list of items
+    by pivoting the list item recusively around a pivot.
+    Recursive processing of left and right sublists is performed in parallel.
+
+    Args:
+        arr (list): list of unsorted items
+
+    Returns:
+        list | None: list of sorted items, None if program crashes.
+    """
     if len(arr) <= 1:
         return arr
     else:
@@ -37,10 +62,14 @@ def quick_parallel_sort(arr):
         left = [x for x in arr if x < pivot]
         middle = [x for x in arr if x == pivot]
         right = [x for x in arr if x > pivot]
-        
+
         result = parallel_process(quick_parallel_sort, [left, right])
         
-        return result[0] + middle + result[1]
+        if result == None:
+            print("quick_parallel_sort crashed")
+            return None
+        else:
+            return result[0] + middle + result[1]
 
 
 ##########################################################################
@@ -83,6 +112,8 @@ def merge(left, right):
     sorted_arr.extend(right[right_index:])
 
     return sorted_arr
+
+
 ####################################################################################
 
 
@@ -98,14 +129,15 @@ def merge_parallel_sort(arr):
 
     # Recursively sort both halves simultaneously
     result = parallel_process(merge_parallel_sort, [left_half, right_half])
-    
+
     if result != None:
         # Merge the sorted halves
         return merge(result[0], result[1])
     else:
         print("Parallel Processing failed!")
         return None
-        
+
+
 ##############################################################################
 
 
@@ -171,13 +203,15 @@ def errorless_pop(liste: list):
     Returns:
         Popped element, if the list is not empty
         None, if the list is empty
-        Content of list is reduced without returning the list, 
+        Content of list is reduced without returning the list,
         because list is a mutable data type passed to the function.
     """
     try:
         return liste.pop()
     except IndexError:
         return None
+
+
 ################################################################################
 
 
@@ -198,27 +232,16 @@ def merge_direct(new_list: list) -> list:
 
     return new_list[0]
 
+
 def return_list(old_value: int) -> list:
     return [old_value]
+
+
 ###################################################################################
 
-
-# trying to define process_counter, which counts the number of times,
-# This is not working at the moment.
-
-def number_of_processes(func):
-    process_number =  0
-    def wrapper( *args, **kwargs):
-        nonlocal process_number
-        process_number += 1
-        result = func(process_number=process_number, *args, **kwargs)
-        process_number += -1
-        return result
-    return wrapper
-           
 
 
 if __name__ == "__main__":
     print(__name__)
-    
+
     main()
