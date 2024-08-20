@@ -256,20 +256,6 @@ def display_speed_comparison(
 #################################################################################################
 
 
-# Count how many times a function has been called!
-
-def counter_function():
-    counter = 0
-    def printer(text="standard") -> None:
-        # Create a variable that has access to the scope of the counter_function
-        nonlocal counter
-        # Increment the counter, whenever the printer_function is executed
-        counter += 1
-        print(counter)
-    # Return the printer function, i.e. create an alias of the printer-function
-    # Each time the printer function is invoked via the alias, the counter is incremented
-    return printer
-
 
 if __name__ == "__main__":
     main()
