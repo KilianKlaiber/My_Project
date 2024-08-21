@@ -64,7 +64,7 @@ def quick_parallel_sort(arr: list) -> list | None:
         right = [x for x in arr if x > pivot]
 
         result = parallel_process(quick_parallel_sort, [left, right])
-        
+
         if result == None:
             print("quick_parallel_sort crashed")
             return None
@@ -238,7 +238,6 @@ def return_list(old_value: int) -> list:
 
 
 ###################################################################################
-
 
 
 if __name__ == "__main__":

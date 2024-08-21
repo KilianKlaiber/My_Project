@@ -4,7 +4,7 @@ from typing import Any
 
 
 def main():
-        
+
     data_list = list(range(10, 25))
     answer = speed_compare_algorithms(
         data_list, "square1", "square2", "square", "square"
@@ -13,6 +13,8 @@ def main():
     display_speed_comparison(
         answer, algorithm_1="easy square", algorithm_2="complicated square"
     )
+
+
 ###############################################################################################
 
 
@@ -32,6 +34,8 @@ def write_to_json(data: Any, json_file: str) -> None:
     with open(json_file, "w") as file:
         contents = dumps(data, indent=2)
         file.write(contents)
+
+
 #########################################################################################
 
 
@@ -53,6 +57,8 @@ def read_from_json(json_file: str) -> Any:
         contents = file.read()
         data = loads(contents)
     return data
+
+
 #############################################################################################
 
 
@@ -77,7 +83,7 @@ def parallel_process(func, data: list) -> list | None:
     else:
         print("No parallel processing possible due to lack of CPUs")
         return None
-    
+
     # Perform Multitasking
     with ProcessPoolExecutor(num_workers) as executor:
         # Submit tasks to be executed with dictionary comprehension
@@ -96,6 +102,8 @@ def parallel_process(func, data: list) -> list | None:
             except Exception as e:
                 print(f"Error processing data at index {idx}: {e}")
     return results
+
+
 #############################################################################################
 
 
@@ -115,11 +123,12 @@ def measure_time(source: str, algorithm: str, data: Any) -> float:
     stmt = f"{algorithm}({data})"
     execution_time = timeit(stmt, setup=setup_code, number=1)
     return execution_time
+
+
 ##################################################################################################
 
 
 def create_list_of_shuffled_lists(max: int, step: int) -> list[list[int]]:
-    
     """Create list of shuffled lists
     args:
         max: maximum number of elements of shuffled sublists
@@ -129,19 +138,21 @@ def create_list_of_shuffled_lists(max: int, step: int) -> list[list[int]]:
         list: list of shuffled sublist
     """
     from random import shuffle
-    
+
     list_of_nums = []
     num = 0
     while num < max:
-        num+=step
+        num += step
         list_of_nums.append(num)
 
     list_of_lists = [list(range(number)) for number in list_of_nums]
 
     for sublist in list_of_lists:
         shuffle(sublist)
-        
+
     return list_of_lists
+
+
 ##################################################################################
 
 
@@ -175,6 +186,8 @@ def speed_compare_algorithms(
             return_list.append(result)
 
     return return_list
+
+
 ###############################################################################################
 
 
@@ -199,6 +212,8 @@ def save_speed_comparison(
     write_to_json(JSON_data, json_file)
 
     return None
+
+
 #########################################################################################
 
 
@@ -217,6 +232,8 @@ def read_speed_comparison(json_file: str) -> list[list]:
     retrieved_list = read_from_json(json_file)
 
     return retrieved_list
+
+
 ########################################################################################
 
 
@@ -253,8 +270,9 @@ def display_speed_comparison(
     plt.title("Execution Time of Algorithms")
     plt.legend()
     plt.show()
-#################################################################################################
 
+
+#################################################################################################
 
 
 if __name__ == "__main__":
