@@ -2,7 +2,6 @@
 
 from functions import *
 from sorting_algorithms import *
-import time
 
 data_list = create_list_of_shuffled_lists(300, 50)
 
